@@ -7,9 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let colorPresent = [ ...colorExist, ...colorExist]
 
-    console.log(colorPresent)
-
     // console.log(colorPresent)
+
 
     function randomizer(originalArray){
         let array = [...originalArray];
@@ -28,25 +27,34 @@ document.addEventListener("DOMContentLoaded", () => {
         for(let i=0; i < colors.length; i++){
             const cards = document.createElement('div')
             cards.classList.add = 'card'
-            cards.dataset.color = colors[i]
+            
 
             const frontFace = document.createElement('div')
-            frontFace.classList.add = 'front'
-            frontFace.classList.add = 'face'
+            frontFace.classList.add = ('face', 'front')
             cards.dataset.color = 'black'
 
             const backFace = document.createElement('div')
-            backFace.classList.add = 'back'
-            backFace.classList.add = 'face'
-            cards.dataset.color = ''
+            backFace.classList.add = ('face', 'back')
+            cards.dataset.color = colors[i]
 
-            cards.appendChild(frontFace,backFace)
+            
+
+            cards.appendChild(frontFace)
+            cards.appendChild(backFace)
+
+
+            frontFace.style.backgroundColor= "#000000";
+            cards.style.backgroundColor = colors[i]
+            // cards.style.height = '7vh';
+            // cards.style.width = '7vw';
+
+            
             console.log(cards)
 
 
             gameBoard.appendChild(cards)
             
-            console.log(cards)
+            // console.log(cards)
         }
     }
 

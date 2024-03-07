@@ -1,6 +1,12 @@
 body{
     height:100vh;
     background-color:hotpink ;
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: cente0r;
+
 }
 
 .location{
@@ -18,13 +24,29 @@ body{
     border: 10px solid black;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    background-color: aliceblue;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    /* margin: 5%; */
     
     }
 
 
-.box{
-   
+.face{
+    height: 7vh;
+    width: 7vw;
+    border-radius: 10px;
     }
 
+
+
+.card{
+    height: 7vh;
+    width: 7vw;
+    border-radius: 10px;
+}
+
+
+.card.flipped{
+
+}
