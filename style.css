@@ -1,11 +1,17 @@
 body{
     height:100vh;
-    background-color:hotpink ;
+    background-color: grey ;
     overflow: hidden;
     margin: 0;
     display: flex;
     justify-content: center;
-    align-items: cente0r;
+    align-items: center;
+
+}
+
+title{
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -27,26 +33,21 @@ body{
     background-color: aliceblue;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
-    /* margin: 5%; */
     
-    }
-
-
-.face{
-    height: 7vh;
-    width: 7vw;
-    border-radius: 10px;
     }
 
 
 
 .card{
-    height: 7vh;
-    width: 7vw;
-    border-radius: 10px;
+    border: 5px solid pink;
+    transform-style:preserve-3d ;
+    transition: transform 3s;
 }
 
-
 .card.flipped{
+    transform: rotateX(180deg);
+}
 
+.card.back{
+    transform: rotateX(180deg);
 }
