@@ -24,11 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return shuffledArray;
     }
     
-    function game(){
+    
+    function game(chosen){
         let colors = randomizer(colorPresent)
         for(let i=0; i < colors.length; i++){
             const card = document.createElement('div')
-            card.classList.add = 'card'
+            card.classList.add('card');
+            card.style.backgroundColor= "#000000";
             
 
             const frontFace = document.createElement('div')
@@ -40,25 +42,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
             
 
-            card.appendChild(frontFace)
+            card.appendChild(frontFace) //how tf do i get it to show the front face bc rn its only showing a blank card bc its showing "card" which is blank
             card.appendChild(backFace)
 
 
-            card.style.backgroundColor= "#000000";
+            frontFace.style.backgroundColor= "#000000";
             backFace.style.backgroundColor = colors[i]
+
             
             console.log(card)
-            card.addEventListener("click", check(chosen,card))
             gameBoard.appendChild(card)
-            
-            // console.log(cards)
+            return card;
         }
+        
+
+
+        card.addEventListener("click",wtf())
+        console.log(chosen)
     }
 
+    function wtf(){
+        console.log('reach me')
+    }
 
-
-    function check(chosen,card){
-        if(chosen.length<2){
+    function check(selected,card){
+        console.log("reach me")
+        if(selected.length<2){
+            selected.push(card)
             flipped(card)
         }
             
@@ -74,6 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function flipped(card){
         card.classList.add('flipped');
+        
+
         // chosen.appendChild(card)
         // console.log(chosen)
 
@@ -90,7 +102,7 @@ function check(){
 
 
 
-    game()
+    game(chosen)
     });
 
 
