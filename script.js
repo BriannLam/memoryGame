@@ -27,45 +27,42 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
 
-    function cardCreate(){
+    function colorCardCreate(){
         let colors = randomizer(colorPresent)
-        let cardStack = []
+        let colorCardStack = []
         let chosenCards = []
         for(let i=0; i < colors.length; i++){
-            const card = document.createElement('div')
-            card.classList.add('card');
-            card.id = "card"
-            card.style.backgroundColor= "#000000";
-            
+            const colorCard = document.createElement('div')
+            colorCard.classList.add('colorCard');
+            colorCard.id = "colorCard"
+            colorCard.style.backgroundColor = colors [i]
+            colorCard.style.zIndex = 0;
+                     
+            console.log(colorCard)
+            gameBoard.appendChild(colorCard)
 
-            const frontFace = document.createElement('div')
-            frontFace.classList.add('face', 'front');
-            frontFace.dataset.color = 'black'
+            colorCardStack.push(colorCard);
+        }
+    }   
 
-            const backFace = document.createElement('div')
-            backFace.classList.add('face', 'back');
-
-            
-
-            card.appendChild(frontFace) //how tf do i get it to show the front face bc rn its only showing a blank card bc its showing "card" which is blank
-            card.appendChild(backFace)
-
-
-            frontFace.style.backgroundColor= "#000000";
-            backFace.style.backgroundColor = colors[i]
-
-            
-            console.log(card)
-            gameBoard.appendChild(card)
-
-
-            card.addEventListener('click', function() {
-                console.log('Card clicked:', card);
-                card.style.backgroundColor = "none"
+    
+    function coverCardCreate(){
+        let colors = randomizer(colorPresent)
+        let coverCardStack = []
+        let chosenCards = []
+        for(let i=0; i < colors.length; i++){
+            const coverCard = document.createElement('div')
+            coverCard.classList.add('coverCard');
+            coverCard.id = "coverCard"
+            coverCard.style.backgroundColor= "black";
+            coverCard.style.zIndex = 1;
+ 
+            coverCard.addEventListener('click', function() {
+                console.log('Card clicked:', coverCard);
                 limit(card); // Call the check function whenever a card is clicked
             });
     
-            cardStack.push(card);
+            coverCardStack.push(coverCard);
         }
         
        function limit(clickedCard){
@@ -83,11 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function stopClick(){
         cardStack.forEach(function(card) {
-                card.removeEventListener('click', function() {
-                console.log('Card clicked:', card);
-                card.style.backgroundColor = "none"
-                limit(card); // Call the check function whenever a card is clicked
-            });
+                console.log('something')
             });
     }
 
@@ -103,12 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     }
 
-    
-
-
 
     function game(){
-        cardCreate()
+        coverCardCreate()
+        colorCardCreate()
+        
     }
 
         // 1st: Make if statement to check that there isn't already two cards flipped
