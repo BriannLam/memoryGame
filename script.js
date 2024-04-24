@@ -1,4 +1,5 @@
 let chosenCards = []
+let finishCards = []
 
 let currColor = ''
 let afterColor = ''
@@ -56,11 +57,19 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(colorCardStack)
 
         for (let i = 0; i < colorCardStack.length; i++) {
-            colorCardStack[i].addEventListener("click", function() {
-                changeColor(i);
-            });
+                colorCardStack[i].addEventListener("click", function() {
+                    changeColor(i)
+                });
         }
         
+        function winCondition(index){
+            if(finishCards.length == 1 ){
+                colorCardStack[index].style.backgroundColor = chosenCards[index]
+                alert('You won')
+            }
+        }
+        
+
         function changeColor(index) {
             if(count == 0){ // Count = 0, WHICH IS ----> 
                 colorCardStack[index].style.backgroundColor = chosenCards[index]
@@ -69,9 +78,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(currColor)
             }
             if(count == 1){ // This checks if the card youre clicking on is the second card in the pair
-                colorCardStack[index].style.backgroundColor = chosenCards[index]
-                afterColor = chosenCards[index] // Another version of currColor except that it is for the second card being clicked
-                console.log(afterColor)
+                if(index != first_instance){
+                    colorCardStack[index].style.backgroundColor = chosenCards[index]
+                    afterColor = chosenCards[index] // Another version of currColor except that it is for the second card being clicked
+                    console.log(afterColor)
+                }
             }
 
             count++
@@ -85,17 +96,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(function(){ 
                     colorCardStack[first_instance].style.backgroundColor = "#000000"  
                     colorCardStack[index].style.backgroundColor = "#000000"
-                 }, 1000);
+                 }, 500);
       
                 console.log("TEST")
                 count = 0
             }
             if(count == 2 && currColor === afterColor){ //If they match then it resets the count and instance and should do win thing
-                console.log("TEST")
-                first_instance = -1; // Basically tells the computer that youre on a new color
-                count = 0
+                if(index != first_instance){
+                    console.log("TEST")
+                    finishCards.push(chosenCards[index])
+                    console.log(finishCards)
+                    setTimeout(function(){ 
+                        winCondition(index)
+                     }, 500);
+                    first_instance = -1; // Basically tells the computer that youre on a new color
+                    count = 1
+                    //win thingy
+                }
+                count = 1
             }
-            console.log(count)
         }
 
     }   
@@ -108,4 +127,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // BUGS TO FIX //
     // 1. Clicking the SAME card and it still resets count // HARDEST BUG
-    // 2. Win Condition // Light bug to fix
