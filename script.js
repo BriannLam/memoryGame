@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
         "indigo", 
         "violet", 
         "white", 
-        "maroon", 
-        "purple", 
-        "pink", 
-        "brown", ]
+        "maroon"] 
+        // "purple", 
+        // "pink", 
+        // "brown", ]
     let colorPresent = [ ...colorExist, ...colorExist]
 
     function randomizer(originalArray){
