@@ -11,6 +11,9 @@ let first_instance = -1
 
 var canClick = true;
 
+const winScreen = document.getElementById('winLocation')
+const restartButton = document.getElementById('restartButton')
+
 document.addEventListener("DOMContentLoaded", () => {
     const gameBoard = document.getElementById("game-board");
     const colorExist = [
@@ -53,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             chosenCards[i] = colors[i] // Puts all colors (IN ORDER) into an array, thats UNAFFECTED by the for loop
 
             colorCard.style.zIndex = 0;
-            colorCard.style.backgroundColor = "#000000" // Sets background to black 
+            colorCard.style.backgroundColor = "#808080" // Sets background to black 
                      
             gameBoard.appendChild(colorCard)
             colorCardStack.push(colorCard);
@@ -77,10 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
         function winCondition(index){
             if(finishCards.length == 2 ){
                 colorCardStack[index].style.backgroundColor = chosenCards[index]
-                alert('You won')
-                setTimeout(function(){ 
+                winScreen.style.display = 'flex';
+                restartButton.addEventListener("click", function(){
                     location.reload();
-                 }, 500);
+                })
             }
         }
         
@@ -95,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 colorCardStack[index].classList.add('flip');
                 currColor = chosenCards[index] // TELLS the computer what the next card should be 
                 first_instance = index; // Logs the index of the first card in the pair
-                chosenCards[index] = "#000000"
+                chosenCards[index] = "#808080"
                 console.log(currColor)
             }
             if(count == 1){ // This checks if the card youre clicking on is the second card in the pair
@@ -129,8 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log(count)
                     console.log(colorCardStack[first_instance])
                     console.log(chosenCards)
-                    colorCardStack[first_instance].style.backgroundColor = "#000000"  
-                    colorCardStack[index].style.backgroundColor = "#000000"
+                    colorCardStack[first_instance].style.backgroundColor = "#808080"  
+                    colorCardStack[index].style.backgroundColor = "#808080"
                     
                  }, 500);
                 count = 0
@@ -154,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
             }
         }
+
 
     }   
 
