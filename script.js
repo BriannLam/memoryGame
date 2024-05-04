@@ -12,7 +12,7 @@ let first_instance = -1
 var canClick = true;
 
 const winScreen = document.getElementById('winLocation')
-const restartButton = document.getElementById('restartButton')
+const restartIcon = document.getElementById('restartIcon')
 
 document.addEventListener("DOMContentLoaded", () => {
     const gameBoard = document.getElementById("game-board");
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(finishCards.length == 2 ){
                 colorCardStack[index].style.backgroundColor = chosenCards[index]
                 winScreen.style.display = 'flex';
-                restartButton.addEventListener("click", function(){
+                restartIcon.addEventListener("click", function(){
                     location.reload();
                 })
             }
