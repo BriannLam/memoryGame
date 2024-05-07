@@ -12,24 +12,23 @@ let first_instance = -1
 var canClick = true;
 
 const winScreen = document.getElementById('winLocation')
-const restartButton = document.getElementById('restartButton')
+const restartIcon = document.getElementById('restartIcon')
 
 document.addEventListener("DOMContentLoaded", () => {
     const gameBoard = document.getElementById("game-board");
     const colorExist = [
-        // "url(FILE_PATH)"
-        "red", 
-        "orange", 
-        "yellow", 
-        "green", 
-        "blue", 
-        "indigo", 
-        "violet", 
-        "white", 
-        "maroon"] 
-        // "purple", 
-        // "pink", 
-        // "brown", ]
+        "url(assets/one.jpeg)", 
+        "url(assets/two.jpeg)", 
+        "url(assets/three.jpeg)", 
+        "url(assets/four.jpeg)", 
+        "url(assets/five.jpeg)", 
+        "url(assets/six.webp)", 
+        "url(assets/seven.jpeg)", 
+        "url(assets/eight.jpeg)", 
+        "url(assets/nine.jpeg)", 
+        "url(assets/ten.jpeg)", 
+        "url(assets/eleven.jpeg)", 
+        "url(assets/twelve.jpeg)",  ]
     let colorPresent = [ ...colorExist, ...colorExist]
 
     function randomizer(originalArray){
@@ -51,12 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const colorCard = document.createElement('div')     // Creates all the cards
             colorCard.classList.add('colorCard');
             colorCard.id = i    // ID of the color 
-            colorCard.style.backgroundColor = colors [i] // Sets background color to color of the card
+            colorCard.style.backgroundImage = colors [i] // Sets background color to color of the card
 
             chosenCards[i] = colors[i] // Puts all colors (IN ORDER) into an array, thats UNAFFECTED by the for loop
 
             colorCard.style.zIndex = 0;
-            colorCard.style.backgroundColor = "#808080" // Sets background to black 
+            colorCard.style.backgroundImage = "url(assets/hide.png)" // Sets background to black 
                      
             gameBoard.appendChild(colorCard)
             colorCardStack.push(colorCard);
@@ -79,9 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         function winCondition(index){
             if(finishCards.length == 2 ){
-                colorCardStack[index].style.backgroundColor = chosenCards[index]
+                colorCardStack[index].style.backgroundImage = chosenCards[index]
                 winScreen.style.display = 'flex';
-                restartButton.addEventListener("click", function(){
+                restartIcon.addEventListener("click", function(){
                     location.reload();
                 })
             }
@@ -90,20 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function changeColor(index) {
             if(colorCardStack[first_instance] === colorCardStack[index]){
-                colorCardStack[first_instance].style.backgroundColor === colorCardStack[index].style.backgroundColor
+                colorCardStack[first_instance].style.backgroundImage === colorCardStack[index].style.backgroundImage
             }
 
-            if(count == 0){ // Count = 0, WHICH IS ----> 
-                colorCardStack[index].style.backgroundColor = chosenCards[index]
+            if(count === 0){ // Count = 0, WHICH IS ----> 
+                colorCardStack[index].style.backgroundImage = chosenCards[index]
                 colorCardStack[index].classList.add('flip');
                 currColor = chosenCards[index] // TELLS the computer what the next card should be 
                 first_instance = index; // Logs the index of the first card in the pair
-                chosenCards[index] = "#808080"
+                chosenCards[index] = colors[index]
                 console.log(currColor)
             }
             if(count == 1){ // This checks if the card youre clicking on is the second card in the pair
                 if(index != first_instance){
-                    colorCardStack[index].style.backgroundColor = chosenCards[index]
+                    colorCardStack[index].style.backgroundImage = chosenCards[index]
                     colorCardStack[index].classList.add('flip');
                     firstColor = chosenCards[index] // Another version of currColor except that it is for the second card being clicked
                     console.log(firstColor)
@@ -121,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(count == 2 && currColor !== firstColor ){ //If they do not match they wull go back to the color black
 
                 chosenCards[first_instance] = currColor
-                // let first_instance_color  = colorCardStack[first_instance].style.backgroundColor;
+                // let first_instance_color  = colorCardStack[first_instance].style.backgroundImage;
                 // chosenCards.push(first_instance_color, chosenCards[first_instance])
 
                 // Set timeout for reveal, before going black
@@ -132,15 +131,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log(count)
                     console.log(colorCardStack[first_instance])
                     console.log(chosenCards)
-                    colorCardStack[first_instance].style.backgroundColor = "#808080"  
-                    colorCardStack[index].style.backgroundColor = "#808080"
+                    colorCardStack[first_instance].style.backgroundImage = "url(assets/hide.png)"
+                    colorCardStack[index].style.backgroundImage = "url(assets/hide.png)"
                     
                  }, 500);
                 count = 0
             }
             if(count == 2 && currColor === firstColor){ //If they match then it resets the count and instance and should do win thing
-                if(index != first_instance){
+                if(index != first_instance){          
                     console.log("match")
+
+                    var indexElement = document.getElementById(index);
+                    if (indexElement) {
+                        indexElement.style.pointerEvents = "none";
+                    }
+
+                    var firstInstanceElement = document.getElementById(first_instance);
+                    if (firstInstanceElement) {
+                        firstInstanceElement.style.pointerEvents = "none";
+                    }  
+
                     finishCards.push(chosenCards[index])
                     console.log(finishCards)
                     setTimeout(function(){ 
@@ -153,12 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     first_instance = -1; // Basically tells the computer that youre on a new color
                     count = 0
                 }
-                
-                
             }
         }
-
-
     }   
 
     function game(){
@@ -166,7 +172,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     game()
     });
-
-    // BUGS TO FIX //
-    // 1. Clicking the SAME card and it still resets count // HARDEST BUG
-    // window.location.reload()
