@@ -78,9 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         function winCondition(index){
-            if(finishCards.length == 2 ){
+            if(finishCards.length == 12 ){
                 colorCardStack[index].style.backgroundColor = chosenCards[index]
-                winScreen.style.display = 'flex';
+                winScreen.classList.add('cover');
                 restartIcon.addEventListener("click", function(){
                     location.reload();
                 })

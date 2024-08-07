@@ -10,12 +10,13 @@ body{
     overflow: hidden;
     margin: 0;
     position: absolute;
-    left: 5%;
     display: flex;
     /* justify-content: center; */
 }
 
 .location{
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +26,7 @@ body{
 .game-board {
     display: grid;
     height: 90vh;
-    width: 60vw;
+    width: 30vw;
     /* border: 10px solid black; */
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -46,19 +47,18 @@ body{
   .flip {
     transform: rotateY(180deg); /* Rotate the card to simulate a flip */
   }
-  
-
 
 
   .winLocation {
     position: absolute;
-    z-index: 3;
-    display: none;
+    z-index: -1;
+    display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     width: 100%; /* Make the winLocation div take up the full width */
     height: 100%; /* Make the winLocation div take up the full height */
+    opacity: 0%;
 }
 
 
@@ -101,7 +101,7 @@ body{
 
 .winScreen {
     background-color: rgb(255, 255, 255);
-    width: 40vw;
+    width: 30vw;
     height: 15vh;
     border: solid 12px rgb(255, 255, 255);
     border-radius: 100px;
@@ -117,7 +117,12 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
-    width: 20vw;
+    height: 20vh;
+    width: auto;
     animation: restartIconBorderAnimation 10s infinite alternate; /* Apply animation */
+}
+
+.cover{
+    z-index: 3;
+    opacity: 100%;
 }
