@@ -117,7 +117,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 10vh;
     width: auto;
     animation: restartIconBorderAnimation 10s infinite alternate; /* Apply animation */
 }
